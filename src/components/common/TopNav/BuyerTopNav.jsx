@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Logo from '../../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 
-const TopNav = () => {
+const BuyerTopNav = () => {
   return (
     <StyledHeader>
       <div>
@@ -70,4 +70,6 @@ const StyledHeader = styled.header`
     margin-left: 38px;
   }
 `;
-export default TopNav;
+
+export { StyledHeader };
+export default BuyerTopNav;

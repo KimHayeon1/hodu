@@ -1,25 +1,48 @@
 import styled from 'styled-components';
-import TopNav from '../components/common/TopNav/TopNav';
+import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
+import SellerTopNav from '../components/common/TopNav/SellerTopNav';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [data, setData] = useState(null);
+  const type = localStorage.getItem('user_type');
 
   useEffect(() => {
-    (async () => {
-      const url = 'https://openmarket.weniv.co.kr';
+    const url = 'https://openmarket.weniv.co.kr';
+
+    const getAllProductsData = async () => {
       const path = '/products/';
-      const res = await fetch(url + path);
+      return await fetch(url + path);
+    };
+
+    const getSellerProductsData = async () => {
+      const path = '/seller/';
+      const token = localStorage.getItem('token');
+      return await fetch(url + path, {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      });
+    };
+
+    (async () => {
+      let res;
+      if (type === 'SELLER') {
+        res = await getSellerProductsData();
+        console.log('a');
+      } else {
+        res = await getAllProductsData();
+        console.log('b');
+      }
       const json = await res.json();
       setData(json.results);
     })();
   }, []);
 
-  console.log(data);
   return (
     <>
-      <TopNav></TopNav>
+      {type === 'BUYER' ? <BuyerTopNav /> : <SellerTopNav />}
       <StyledMain>
         <article></article>
         <ul>

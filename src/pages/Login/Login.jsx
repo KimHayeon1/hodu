@@ -50,28 +50,31 @@ const Login = () => {
     }
   };
 
+  console.log(type);
   return (
     <Form>
       <h2 className='a11y-hidden'>로그인</h2>
 
       <button
         className={type !== 'buyer' ? 'disabled' : null}
-        disabled={type === 'buyer' ? false : true}
-        onClick={() => setType('seller')}
+        onClick={() => {
+          setType('buyer');
+        }}
       >
         구매회원 로그인
       </button>
       <button
         className={type !== 'seller' ? 'disabled right' : 'right'}
-        disabled={type === 'seller' ? false : true}
-        onClick={() => setType('buyer')}
+        onClick={() => {
+          setType('seller');
+        }}
       >
         판매회원 로그인
       </button>
 
       <form onSubmit={handleForm}>
         <fieldset>
-          <legend class='a11y-hidden'>
+          <legend className='a11y-hidden'>
             {type === 'buyer' ? '구매회원 로그인' : '판매회원 로그인'}
           </legend>
           <label htmlFor='id-inp' className='a11y-hidden'>

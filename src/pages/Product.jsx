@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import TopNav from '../components/common/TopNav/TopNav';
 import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
+import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
+import Quantity from '../components/common/Quantity';
 import { MButton, MDarkButton } from '../components/common/Buttons';
 
 const Home = () => {
@@ -35,6 +36,7 @@ const Home = () => {
       method: 'POST',
       headers: {
         Authorization: `JWT ${token}`,
+        'Content-type': 'application/json',
       },
       body: JSON.stringify(cartData),
     });
@@ -53,25 +55,14 @@ const Home = () => {
 
   return (
     <>
-      <TopNav></TopNav>
+      <BuyerTopNav></BuyerTopNav>
       <StyledMain>
         <div>
           <span>{data && data.store_name}</span>
           <h2>{data && data.product_name}</h2>
           <span>{data && data.price}</span>
           <span>택배배송 / 무료배송</span>
-          <label htmlFor='quantity-inp' className='a11y-hidden'>
-            수량 입력
-          </label>
-          <input
-            id='quantity-inp'
-            type='number'
-            value={quantity}
-            min={1}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-          <button className='minus-btn'>수량 빼기</button>
-          <button className='plus-btn'>수량 더하기</button>
+          <Quantity quantity={quantity} setQuantity={setQuantity}></Quantity>
 
           <div>
             총 상품 금액<span>총 수량{}개</span>
@@ -108,50 +99,6 @@ const StyledMain = styled.main`
   }
   & > div {
     width: 50%;
-
-    input {
-      border: 1px solid var(--gray-200);
-    }
-
-    /* 우측 화살표 제거 */
-    input[type='number']::-webkit-outer-spin-button,
-    input[type='number']::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
-
-  .plus-btn,
-  .minus-btn {
-    position: relative;
-    padding: 23px 14px;
-    font-size: 0;
-    border: 1px solid var(--gray-200);
-  }
-
-  .minus-btn::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--gray-200);
-  }
-
-  .plus-btn::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--gray-200);
-  }
-  .plus-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 2px;
-    height: 20px;
-    background: var(--gray-200);
   }
 
   section {
