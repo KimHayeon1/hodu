@@ -1,30 +1,41 @@
 import styled from 'styled-components';
-import Logo from '../../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
+
+import logo from '../../../assets/images/logo.svg';
+import cart from '../../../assets/images/cart.svg';
+import user from '../../../assets/images/user.svg';
+import search from '../../../assets/images/search.svg';
 
 const BuyerTopNav = () => {
   return (
     <StyledHeader>
       <div>
         <h1>
-          <img src={Logo} alt='호두 로고' />
+          <img src={logo} alt='호두 로고' />
         </h1>
-        <form action=''>
-          <fieldset>
-            <legend className='a11y-hidden'>통합 검색</legend>
-            <label className='a11y-hidden' htmlFor='keword-inp'>
-              검색어 입력
-            </label>
-            <input
-              id='keword-inp'
-              type='text'
-              placeholder='상품을 검색해보세요!'
-            />
-            <button>검색하기</button>
-          </fieldset>
+
+        <form>
+          <label className='a11y-hidden' htmlFor='keword-inp'>
+            통합 검색어 입력
+          </label>
+          <input
+            id='keword-inp'
+            type='text'
+            placeholder='상품을 검색해보세요!'
+          />
+          <button aria-label='검색하기'>
+            <img src={search} alt='' />
+          </button>
         </form>
-        <Link>장바구니</Link>
-        <Link>마이페이지</Link>
+
+        <Link id='cart'>
+          <img src={cart} alt='' />
+          장바구니
+        </Link>
+        <Link>
+          <img src={user} alt='' />
+          마이페이지
+        </Link>
       </div>
     </StyledHeader>
   );
@@ -37,7 +48,7 @@ const StyledHeader = styled.header`
   background: var(--white-color);
 
   div {
-    width: min(1280px, 100%);
+    max-width: 1280px;
     margin: auto;
     padding: 22px 52px; // 52 임의
     display: flex;
@@ -50,9 +61,12 @@ const StyledHeader = styled.header`
   }
 
   form {
+    position: relative;
+    display: flex;
     input {
+      box-sizing: border-box;
       width: 400px;
-      padding: 11px 22px;
+      padding: 11px 50px 11px 22px;
       font-size: 1.6rem;
       line-height: 2rem;
       border: 2px solid var(--brand-color);
@@ -61,13 +75,36 @@ const StyledHeader = styled.header`
     input::placeholder {
       color: var(--gray-400);
     }
+    button {
+      position: absolute;
+      width: 28px;
+      top: 0;
+      bottom: 0;
+      right: 23px;
+      margin: auto 0;
+    }
   }
 
-  a:not(:last-child) {
-    margin-left: auto;
-  }
-  a:last-child {
-    margin-left: 38px;
+  a {
+    color: var(--gray-400);
+    font-size: 1.2rem;
+
+    img {
+      margin: 0 auto 4px;
+      width: 32px;
+    }
+
+    &#cart img {
+      margin-left: 2px;
+    }
+
+    &:not(:last-child) {
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-left: 38px;
+    }
   }
 `;
 

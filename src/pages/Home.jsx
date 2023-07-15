@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
-import SellerTopNav from '../components/common/TopNav/SellerTopNav';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
+import SellerTopNav from '../components/common/TopNav/SellerTopNav';
+import Footer from '../components/common/Footer';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -30,10 +32,8 @@ const Home = () => {
       let res;
       if (type === 'SELLER') {
         res = await getSellerProductsData();
-        console.log('a');
       } else {
         res = await getAllProductsData();
-        console.log('b');
       }
       const json = await res.json();
       setData(json.results);
@@ -46,22 +46,25 @@ const Home = () => {
       <StyledMain>
         <article></article>
         <ul>
-          <h3 className='a11y-hidden'>상품 목록</h3>
+          <h2 className='a11y-hidden'>상품 목록</h2>
           {data &&
             data.map((v) => {
               return (
                 <li key={v.product_id}>
                   <Link to={`/products/${v.product_id}/`}>
                     <img src={v.image} alt='' />
-                    <span>{v.store_name}</span>
-                    <h4>{v.product_name}</h4>
-                    <span>{v.price}</span>
+                    <div className='store'>{v.store_name}</div>
+                    <strong>{v.product_name}</strong>
+                    <div className='price'>
+                      <span>{v.price}</span>원
+                    </div>
                   </Link>
                 </li>
               );
             })}
         </ul>
       </StyledMain>
+      <Footer></Footer>
     </>
   );
 };
@@ -86,6 +89,27 @@ const StyledMain = styled.main`
       aspect-ratio: 1 / 1;
       border-radius: 10px;
       border: 1px solid var(--gray-300);
+    }
+
+    .store {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      color: var(--gray-400);
+      margin: 16px 0 10px;
+    }
+
+    strong {
+      font-size: 1.8rem;
+      line-height: 2.2rem;
+    }
+
+    .price {
+      margin-top: 10px;
+      font-size: 1.6rem;
+      span {
+        font-size: 2.4rem;
+        font-weight: 700;
+      }
     }
   }
 `;

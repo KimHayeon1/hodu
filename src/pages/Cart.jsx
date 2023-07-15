@@ -19,7 +19,7 @@ const Home = () => {
       });
       const json = await res.json();
       setData(json.results);
-
+      console.log(token);
       const quantityList = {};
       json.results.map((v) => {
         quantityList[v.cart_item_id] = v.quantity;
