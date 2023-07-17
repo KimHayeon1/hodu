@@ -11,7 +11,9 @@ const BuyerTopNav = () => {
     <StyledHeader>
       <div>
         <h1>
-          <img src={logo} alt='호두 로고' />
+          <Link to='/'>
+            <img src={logo} alt='호두 로고' />
+          </Link>
         </h1>
 
         <form>
@@ -85,7 +87,7 @@ const StyledHeader = styled.header`
     }
   }
 
-  a {
+  div > a {
     color: var(--gray-400);
     font-size: 1.2rem;
 
