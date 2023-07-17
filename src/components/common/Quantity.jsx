@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Amount = ({ amount, setAmount, handleMinusBtn, handlePlusBtn }) => {
+const Quantity = ({ amount, setAmount, handleMinusBtn, handlePlusBtn }) => {
   return (
-    <StyledDiv>
+    <StyledQuantity>
       <label htmlFor='amount-inp' className='a11y-hidden'>
         수량 입력
       </label>
@@ -23,11 +23,11 @@ const Amount = ({ amount, setAmount, handleMinusBtn, handlePlusBtn }) => {
         aria-label='수량 더하기'
         onClick={handlePlusBtn}
       ></button>
-    </StyledDiv>
+    </StyledQuantity>
   );
 };
 
-const StyledDiv = styled.div`
+const StyledQuantity = styled.div`
   width: 150px;
   aspect-ratio: 3/1;
   border: 1px solid var(--gray-200);
@@ -90,4 +90,5 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default Amount;
+export default Quantity;
+export { StyledQuantity };

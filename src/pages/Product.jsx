@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
-import Amount from '../components/common/Amount';
+import Quantity from '../components/common/Quantity';
 import Footer from '../components/common/Footer';
 import { MButton, MDarkButton } from '../components/common/Buttons';
 
@@ -11,7 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState(null);
-  const [amount, setAmount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(17500); // 임시
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Home = () => {
     const token = localStorage.getItem('token');
     const cartData = {
       product_id: parseInt(id),
-      amount: amount,
+      quantity: quantity,
       check: false, // 임시. 장바구니에 해당 제품이 있는지
     };
     console.log(JSON.stringify(cartData));
@@ -61,13 +61,13 @@ const Home = () => {
   };
 
   const handleMinusBtn = () => {
-    if (amount > 1) {
-      setAmount(amount - 1);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
 
   const handlePlusBtn = () => {
-    setAmount(amount + 1);
+    setQuantity(quantity + 1);
   };
   return (
     <>
@@ -83,19 +83,19 @@ const Home = () => {
               <span>{data && data.price}</span> 원
             </div>
             <div className='shipping'>택배배송 / 무료배송</div>
-            <Amount
-              amount={amount}
-              setAmount={setAmount}
+            <Quantity
+              quantity={quantity}
+              setQuantity={setQuantity}
               handlePlusBtn={handlePlusBtn}
               handleMinusBtn={handleMinusBtn}
-            ></Amount>
+            ></Quantity>
             <div className='total'>
               <span>총 상품 금액</span>
-              <span className='total-amount'>
-                총 수량 <span>{amount}</span> 개
+              <span className='total-quantity'>
+                총 수량 <span>{quantity}</span> 개
               </span>
               <span className='total-price'>
-                <span>{price * amount}</span> 원
+                <span>{price * quantity}</span> 원
               </span>
             </div>
             <div className='btns'>
@@ -210,7 +210,7 @@ const StyledMain = styled.main`
         width: 100%;
         font-size: 1.8rem;
         font-weight: 500;
-        .total-amount {
+        .total-quantity {
           margin-left: auto;
           color: var(--gray-400);
           font-weight: 400;

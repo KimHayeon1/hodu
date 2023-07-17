@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
-// import { StyledInput, StyledButton } from '../components/common/Amount';
-import Amount from '../components/common/Amount';
+import { StyledQuantity } from '../components/common/Quantity';
+import Quantity from '../components/common/Quantity';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -67,7 +67,6 @@ const Home = () => {
     console.log(json);
   };
 
-  const [test, setTest] = useState(1);
   return (
     <>
       <BuyerTopNav></BuyerTopNav>
@@ -97,60 +96,55 @@ const Home = () => {
                     <span>택배배송 / 무료배송</span>
                     <img src='' alt='담요를 덮은 토끼' />
                   </span>
-                  {/* <Quantity
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                  ></Quantity> */}
-
-                  {/* <label htmlFor='quantity-inp' className='a11y-hidden'>
-                    수량 입력
-                  </label>
-                  <StyledInput
-                    id='quantity-inp'
-                    type='number'
-                    value={quantity[v.cart_item_id]}
-                    min={1}
-                    onChange={(e) => {
-                      const quantityList = { ...quantity };
-                      quantityList[v.cart_item_id] = e.target.value;
-                      setQuantity(quantityList);
-                      changeQuantity(
-                        v.product_id,
-                        v.cart_item_id,
-                        e.target.value
-                      );
-                    }}
-                  /> */}
-                  {/* <StyledButton
-                    className='minus-btn'
-                    onClick={() => {
-                      const quantityList = { ...quantity };
-                      quantityList[v.cart_item_id]--;
-                      setQuantity(quantityList);
-                      changeQuantity(
-                        v.product_id,
-                        v.cart_item_id,
-                        quantityList[v.cart_item_id]
-                      );
-                    }}
-                  >
-                    수량 빼기
-                  </StyledButton>
-                  <StyledButton
-                    className='plus-btn'
-                    onClick={(e) => {
-                      const quantityList = { ...quantity };
-                      quantityList[v.cart_item_id]++;
-                      setQuantity(quantityList);
-                      changeQuantity(
-                        v.product_id,
-                        v.cart_item_id,
-                        quantityList[v.cart_item_id]
-                      );
-                    }}
-                  >
-                    수량 더하기
-                  </StyledButton> */}
+                  <StyledQuantity>
+                    <label htmlFor='quantity-inp' className='a11y-hidden'>
+                      수량 입력
+                    </label>
+                    <input
+                      id='quantity-inp'
+                      type='number'
+                      value={quantity[v.cart_item_id]}
+                      min={1}
+                      onChange={(e) => {
+                        const quantityList = { ...quantity };
+                        quantityList[v.cart_item_id] = e.target.value;
+                        setQuantity(quantityList);
+                        changeQuantity(
+                          v.product_id,
+                          v.cart_item_id,
+                          e.target.value
+                        );
+                      }}
+                    />
+                    <button
+                      className='minus-btn'
+                      aria-label='수량 빼기'
+                      onClick={() => {
+                        const quantityList = { ...quantity };
+                        quantityList[v.cart_item_id]--;
+                        setQuantity(quantityList);
+                        changeQuantity(
+                          v.product_id,
+                          v.cart_item_id,
+                          quantityList[v.cart_item_id]
+                        );
+                      }}
+                    ></button>
+                    <button
+                      className='plus-btn'
+                      aria-label='수량 더하기'
+                      onClick={(e) => {
+                        const quantityList = { ...quantity };
+                        quantityList[v.cart_item_id]++;
+                        setQuantity(quantityList);
+                        changeQuantity(
+                          v.product_id,
+                          v.cart_item_id,
+                          quantityList[v.cart_item_id]
+                        );
+                      }}
+                    ></button>
+                  </StyledQuantity>
                   <span>17,500원</span>
                   <button
                     className='delete-btn'
