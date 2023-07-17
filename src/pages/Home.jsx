@@ -51,14 +51,13 @@ const Home = () => {
             data.map((v) => {
               return (
                 <li key={v.product_id}>
-                  <Link to={`/products/${v.product_id}/`}>
-                    <img src={v.image} alt='' />
-                    <div className='store'>{v.store_name}</div>
-                    <strong>{v.product_name}</strong>
-                    <div className='price'>
-                      <span>{v.price}</span>원
-                    </div>
-                  </Link>
+                  <img src={v.image} alt='' />
+                  <div className='store'>{v.store_name}</div>
+                  <strong>{v.product_name}</strong>
+                  <div className='price'>
+                    <span>{v.price}</span>원
+                  </div>
+                  <Link to={`/products/${v.product_id}/`}></Link>
                 </li>
               );
             })}
@@ -84,8 +83,16 @@ const StyledMain = styled.main`
     gap: 70px;
     grid-template-columns: repeat(3, 1fr);
 
+    li {
+      position: relative;
+    }
+    a {
+      position: absolute;
+      inset: 0;
+    }
     img {
       object-fit: cover;
+      box-sizing: border-box;
       aspect-ratio: 1 / 1;
       border-radius: 10px;
       border: 1px solid var(--gray-300);
