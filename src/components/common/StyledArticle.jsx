@@ -1,19 +1,6 @@
 import styled from 'styled-components';
 import Logo from '../../assets/images/logo.svg';
 
-const Form = ({ children }) => {
-  return (
-    <>
-      <StyledArticle>
-        <h1>
-          <img src={Logo} alt='호두 로고' />
-        </h1>
-        {children}
-      </StyledArticle>
-    </>
-  );
-};
-
 const StyledArticle = styled.article`
   max-width: 550px;
   margin: 70px auto 110px;
@@ -26,7 +13,7 @@ const StyledArticle = styled.article`
   & > button {
     position: relative;
     z-index: 1;
-    background: var(--white-color);
+    background: white;
     width: 50%;
     padding: 20px 0;
     font-weight: 500;
@@ -51,7 +38,7 @@ const StyledArticle = styled.article`
     bottom: -10px;
     border: 1px solid var(--gray-200);
     border-width: 0 0 0 1px;
-    background: var(--white-color);
+    background: white;
     border-radius: 10px 10px 0 0;
   }
   & > button.right::after {
@@ -71,46 +58,20 @@ const StyledArticle = styled.article`
     padding: 34px 35px 36px;
     border: 1px solid var(--gray-200);
     border-radius: 10px;
-    background: var(--white-color);
+    background: white;
 
     input {
       display: block;
       width: 100%;
-      padding: 20px 0;
+      padding: 20px 0; // login만 사용하는 속성
       font-size: 1.6rem;
       border: 1px solid var(--gray-200);
-      border-width: 0 0 1px 0;
+      border-width: 0 0 1px 0; // login만 사용하는 속성
     }
     button {
-      margin-top: 36px;
-    }
-  }
-
-  div {
-    position: relative;
-    text-align: center;
-
-    a {
-      color: var(--gray-500);
-      font-size: 1.6rem;
-    }
-
-    a:first-child {
-      position: relative;
-      margin-right: 33px;
-    }
-
-    a:first-child::after {
-      content: '';
-      position: absolute;
-      top: 3px;
-      right: -17px;
-      bottom: 0;
-      height: 1.6rem;
-      width: 1px;
-      background: var(--gray-500);
+      margin-top: 36px; // login만 사용하는 속성
     }
   }
 `;
 
-export default Form;
+export { StyledArticle };

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
+import Join from './pages/Join';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
@@ -12,6 +13,7 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/join' element={<Join />} />
         <Route path='/products/:id' element={<Product />} />
         <Route path='/cart' element={<Cart />} />
 

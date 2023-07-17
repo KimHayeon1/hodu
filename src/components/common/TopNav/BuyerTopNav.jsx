@@ -28,7 +28,7 @@ const BuyerTopNav = () => {
           </button>
         </form>
 
-        <Link id='cart'>
+        <Link id='cart' to='/cart'>
           <img src={cart} alt='' />
           장바구니
         </Link>
@@ -45,7 +45,7 @@ const StyledHeader = styled.header`
   position: fixed;
   width: 100%;
   box-shadow: 0 4px 5px #00000010;
-  background: var(--white-color);
+  background: white;
 
   div {
     max-width: 1280px;

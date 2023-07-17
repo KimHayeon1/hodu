@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import BuyerTopNav from '../components/common/TopNav/BuyerTopNav';
-import { StyledInput, StyledButton } from '../components/common/Quantity';
+// import { StyledInput, StyledButton } from '../components/common/Amount';
+import Amount from '../components/common/Amount';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -19,7 +20,6 @@ const Home = () => {
       });
       const json = await res.json();
       setData(json.results);
-      console.log(token);
       const quantityList = {};
       json.results.map((v) => {
         quantityList[v.cart_item_id] = v.quantity;
@@ -102,7 +102,7 @@ const Home = () => {
                     setQuantity={setQuantity}
                   ></Quantity> */}
 
-                  <label htmlFor='quantity-inp' className='a11y-hidden'>
+                  {/* <label htmlFor='quantity-inp' className='a11y-hidden'>
                     수량 입력
                   </label>
                   <StyledInput
@@ -120,8 +120,8 @@ const Home = () => {
                         e.target.value
                       );
                     }}
-                  />
-                  <StyledButton
+                  /> */}
+                  {/* <StyledButton
                     className='minus-btn'
                     onClick={() => {
                       const quantityList = { ...quantity };
@@ -150,7 +150,7 @@ const Home = () => {
                     }}
                   >
                     수량 더하기
-                  </StyledButton>
+                  </StyledButton> */}
                   <span>17,500원</span>
                   <button
                     className='delete-btn'

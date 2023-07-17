@@ -7,7 +7,7 @@ const MButton = styled.button`
   line-height: 22px;
   font-weight: 500;
   border-radius: 5px;
-  color: var(--white-color);
+  color: white;
   background: var(--brand-color);
 `;
 
@@ -18,4 +18,12 @@ const MDisabledButton = styled(MButton)`
 const MDarkButton = styled(MButton)`
   background: var(--gray-400);
 `;
-export { MButton, MDisabledButton, MDarkButton };
+
+const MWhiteButton = styled(MButton)`
+  padding: 18px;
+  color: var(--gray-400);
+  background: white;
+  border: 1px solid var(--gray-300);
+`;
+
+export { MButton, MDisabledButton, MDarkButton, MWhiteButton };

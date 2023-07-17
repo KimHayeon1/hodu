@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import Form from '../../components/common/Form';
-import { MButton, MDisabledButton } from '../../components/common/Buttons';
+import { useRef, useState } from 'react';
+import { StyledArticle } from '../../components/common/StyledArticle';
+import { MButton } from '../../components/common/Buttons';
 import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import Logo from '../../assets/images/logo.svg';
 
 const Login = () => {
   const navigate = useNavigate();
   const [type, setType] = useState('buyer');
-  const [vaild, setVaild] = useState(true); //임시
-
   const [id, setId] = useState(''); // (e.target[0].value);
   const [password, setPassword] = useState(''); // (e.target[1].value);
 
@@ -32,51 +31,58 @@ const Login = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
+    if (!id) {
+      errorEl.current.textContent = '아이디를 입력해 주세요.';
+      return;
+    }
+    if (!password) {
+      errorEl.current.textContent = '비밀번호를 입력해 주세요.';
+      return;
+    }
     try {
       const data = await getData();
-      console.log(data);
       if (data.token) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user_type', data.user_type);
         navigate('/');
       } else if (data.FAIL_Message) {
-        alert(data.FAIL_Message);
-      } else {
-        const message = Object.values(data).join('');
-        alert(message);
+        errorEl.current.textContent =
+          '아이디 또는 비밀번호가 일치하지 않습니다.';
       }
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(type);
+  const errorEl = useRef();
   return (
-    <Form>
-      <h2 className='a11y-hidden'>로그인</h2>
+    <>
+      <StyledArticle>
+        <h1>
+          <img src={Logo} alt='호두 로고' />
+        </h1>
+        {/* 고민중 */}
+        <h2 className='a11y-hidden'>
+          {type === 'buyer' ? '구매회원 로그인' : '판매회원 로그인'}
+        </h2>
 
-      <button
-        className={type !== 'buyer' ? 'disabled' : null}
-        onClick={() => {
-          setType('buyer');
-        }}
-      >
-        구매회원 로그인
-      </button>
-      <button
-        className={type !== 'seller' ? 'disabled right' : 'right'}
-        onClick={() => {
-          setType('seller');
-        }}
-      >
-        판매회원 로그인
-      </button>
+        <button
+          className={type !== 'buyer' ? 'disabled' : null}
+          onClick={() => {
+            setType('buyer');
+          }}
+        >
+          구매회원 로그인
+        </button>
+        <button
+          className={type !== 'seller' ? 'disabled right' : 'right'}
+          onClick={() => {
+            setType('seller');
+          }}
+        >
+          판매회원 로그인
+        </button>
 
-      <form onSubmit={handleForm}>
-        <fieldset>
-          <legend className='a11y-hidden'>
-            {type === 'buyer' ? '구매회원 로그인' : '판매회원 로그인'}
-          </legend>
+        <form onSubmit={handleForm}>
           <label htmlFor='id-inp' className='a11y-hidden'>
             아이디 입력
           </label>
@@ -97,20 +103,43 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {vaild ? (
-            <MButton>로그인</MButton>
-          ) : (
-            <MDisabledButton>로그인</MDisabledButton>
-          )}
-        </fieldset>
-      </form>
-
-      <div>
-        <Link>회원가입</Link>
-        <Link>비밀번호 찾기</Link>
-      </div>
-    </Form>
+          <strong ref={errorEl} role='alert'></strong>
+          <MButton>로그인</MButton>
+        </form>
+        <StyledLinks>
+          <Link to='/join'>회원가입</Link>
+          <Link onClick={(e) => alert('아직 기능이 개발되지 않았습니다.')}>
+            비밀번호 찾기
+          </Link>
+        </StyledLinks>
+      </StyledArticle>
+    </>
   );
 };
+
+const StyledLinks = styled.div`
+  position: relative;
+  text-align: center;
+
+  a {
+    color: var(--gray-500);
+    font-size: 1.6rem;
+    padding: 8px 15px;
+  }
+
+  a:first-child {
+    position: relative;
+  }
+
+  a:first-child::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 11px;
+    height: 1.6rem;
+    width: 1px;
+    background: var(--gray-500);
+  }
+`;
 
 export default Login;

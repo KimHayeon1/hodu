@@ -17,11 +17,11 @@ const GlobalStyle = createGlobalStyle`
     --gray-400: #767676;
     --gray-500: #333333;
 
-    --black-color: black;
-    --white-color: white;
-
     /* 시멘틱 컬러 */
     --error-color:#EB5757;
+
+    
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
   }
 
   a {
@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button, input, textarea {
-    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    font-family: inherit;
     padding: 0;
     border: none;
     font-size: inherit;
