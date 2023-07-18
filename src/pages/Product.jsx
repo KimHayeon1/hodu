@@ -75,7 +75,6 @@ const Home = () => {
       <StyledMain>
         <h2 className='a11y-hidden'>상품 상세</h2>
         <section className='purchase'>
-          <img src={data && data.image} alt='상품' />
           <div>
             <div className='store'>{data && data.store_name}</div>
             <strong>{data && data.product_name}</strong>
@@ -103,6 +102,7 @@ const Home = () => {
               <MDarkButton onClick={handleCardBtn}>장바구니</MDarkButton>
             </div>
           </div>
+          <img src={data && data.image} alt='상품' />
         </section>
         <section className='info'>
           <ul>
@@ -128,18 +128,19 @@ const Home = () => {
 
 const StyledMain = styled.main`
   max-width: 1280px;
-  padding: 170px 52px 0; // header 90px
+  padding: 170px 52px 0; // header height: 90px
   margin: auto;
 
   .purchase {
     display: flex;
+    flex-direction: row-reverse;
     align-items: flex-start;
     gap: 60px;
     margin-bottom: 140px;
 
     img {
-      max-width: 600px;
-      width: 100%;
+      flex-basis: 600px;
+      min-width: 0;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border: 1px solid var(--gray-300);
