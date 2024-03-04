@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import logo from '../../../assets/images/logo.svg';
-import cart from '../../../assets/images/cart.svg';
-import user from '../../../assets/images/user.svg';
-import search from '../../../assets/images/search.svg';
+import logo from '../../../assets/icons/logo.svg';
+import cart from '../../../assets/icons/cart.svg';
+import user from '../../../assets/icons/user.svg';
+import search from '../../../assets/icons/search.svg';
 
 const BuyerTopNav = () => {
   return (
