@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
-const Quantity = ({ amount, setAmount, handleMinusBtn, handlePlusBtn }) => {
+const Quantity = ({ quantity, setQuantity, handleMinusBtn, handlePlusBtn }) => {
   return (
     <StyledQuantity>
-      <label htmlFor='amount-inp' className='a11y-hidden'>
+      <label htmlFor='quantity-inp' className='a11y-hidden'>
         수량 입력
       </label>
       <input
-        id='amount-inp'
+        id='quantity-inp'
         type='number'
-        value={amount}
+        value={quantity}
         min={1}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={(e) => setQuantity(e.target.value)}
       />
       <button
         className='minus-btn'
