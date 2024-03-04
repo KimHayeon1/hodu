@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Logo from '../../../assets/images/logo.svg';
-import { Link } from 'react-router-dom';
+import Logo from '../../../assets/icons/logo.svg';
 import { StyledHeader } from './BuyerTopNav';
 
 const SellerCenterTopNav = () => {

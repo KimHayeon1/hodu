@@ -3,7 +3,7 @@ import { StyledArticle } from '../../components/common/StyledArticle';
 import { MButton } from '../../components/common/Buttons';
 import { Link, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import Logo from '../../assets/images/logo.svg';
+import Logo from '../../assets/icons/logo.svg';
 
 const Login = () => {
   const navigate = useNavigate();
